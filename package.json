@@ -10,6 +10,8 @@
   },
   "scripts": {
     "start": "elm-reactor",
+    "test": "echo \"No tests yet\"",
+    "build": "elm-make src/Main.elm --output=build/main.html --yes --warn",
     "elm-install": "elm-package install --yes"
   },
   "author": "",

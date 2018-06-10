@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:7.10
+
+    working_directory: ~/tictactoe
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum "elm-package.json" }}
+          - v1-dependencies-
+
+      - run: npm install && npm run elm-install
+
+      - run: npm test
+
+      - run: npm run build
+
+      - save_cache:
+          paths:
+            - node_modules
+            - elm-stuff
+          key: v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum "elm-package.json" }}
+
+      - store_artifacts:
+          path: build
+          destination: build
