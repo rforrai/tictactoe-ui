@@ -1,4 +1,4 @@
-module Style exposing (..)
+module Style exposing (boardTable, boardWrapper, crossLine, grid, gridLine, gridWrapper, line, nought, root, symbol, tableData, variables)
 
 import Css exposing (..)
 
@@ -30,8 +30,8 @@ tableData =
 line : String -> Int -> Float -> List Style
 line color strokeWidth length =
     [ property "stroke" color
-    , property "stroke-width" (toString strokeWidth)
-    , property "stroke-dasharray" (toString length)
+    , property "stroke-width" (String.fromInt strokeWidth)
+    , property "stroke-dasharray" (String.fromFloat length)
     , property "stroke-dashoffset" "0"
     ]
 

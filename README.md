@@ -4,5 +4,8 @@
 ## How to run
 
 * run `npm install`
-* run `npm run elm-install`
 * run `npm start`
+
+## How to build
+
+* run `npm run build`

@@ -1,10 +1,10 @@
-module Grid exposing (grid, nought, cross)
+module Grid exposing (cross, grid, nought)
 
 import Css exposing (Style, property)
 import String exposing (concat)
+import Style
 import Svg.Styled exposing (..)
 import Svg.Styled.Attributes exposing (css, d, viewBox)
-import Style
 
 
 vars =
@@ -18,9 +18,9 @@ line ( x1, y1 ) ( x2, y2 ) style =
             sqrt (toFloat ((x2 - x1) ^ 2 + (y2 - y1) ^ 2))
 
         instructions =
-            "M" ++ toString x1 ++ "," ++ toString y1 ++ "L" ++ toString x2 ++ "," ++ toString y2
+            "M" ++ String.fromInt x1 ++ "," ++ String.fromInt y1 ++ "L" ++ String.fromInt x2 ++ "," ++ String.fromInt y2
     in
-        path [ d instructions, css <| style length ] []
+    path [ d instructions, css <| style length ] []
 
 
 nought : Svg a
@@ -72,15 +72,15 @@ grid width borderPadding =
         gridLine =
             \from to -> line from to Style.gridLine
     in
-        svg
-            [ css (Style.grid totalWidth totalWidth)
-            ]
-            [ gridLine ( center, closeCenter ) ( base, closeCenter )
-            , gridLine ( center, farCenter ) ( base, farCenter )
-            , gridLine ( center, closeCenter ) ( far, closeCenter )
-            , gridLine ( center, farCenter ) ( far, farCenter )
-            , gridLine ( closeCenter, center ) ( closeCenter, base )
-            , gridLine ( farCenter, center ) ( farCenter, base )
-            , gridLine ( closeCenter, center ) ( closeCenter, far )
-            , gridLine ( farCenter, center ) ( farCenter, far )
-            ]
+    svg
+        [ css (Style.grid totalWidth totalWidth)
+        ]
+        [ gridLine ( center, closeCenter ) ( base, closeCenter )
+        , gridLine ( center, farCenter ) ( base, farCenter )
+        , gridLine ( center, closeCenter ) ( far, closeCenter )
+        , gridLine ( center, farCenter ) ( far, farCenter )
+        , gridLine ( closeCenter, center ) ( closeCenter, base )
+        , gridLine ( farCenter, center ) ( farCenter, base )
+        , gridLine ( closeCenter, center ) ( closeCenter, far )
+        , gridLine ( farCenter, center ) ( farCenter, far )
+        ]

@@ -1,14 +1,15 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), init, main, update, view)
 
+import Board exposing (board)
+import Browser
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Style
-import Board exposing (board)
 
 
 main =
-    Html.beginnerProgram { model = model, view = view >> toUnstyled, update = update }
+    Browser.sandbox { init = init, view = view >> toUnstyled, update = update }
 
 
 type alias Model =
@@ -19,8 +20,8 @@ type Msg
     = NoOp
 
 
-model : Model
-model =
+init : Model
+init =
     {}
 
 

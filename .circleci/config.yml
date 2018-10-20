@@ -11,10 +11,10 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum "elm-package.json" }}
+          - v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum "elm.json" }}
           - v1-dependencies-
 
-      - run: npm install && npm run elm-install
+      - run: npm install
 
       - run: npm test
 
@@ -24,7 +24,8 @@ jobs:
           paths:
             - node_modules
             - elm-stuff
-          key: v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum "elm-package.json" }}
+            - ~/.elm
+          key: v1-dependencies-{{ checksum "package-lock.json" }}-{{ checksum "elm.json" }}
 
       - store_artifacts:
           path: build

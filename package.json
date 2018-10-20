@@ -5,14 +5,13 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "elm": "0.18.0",
-    "elm-format": "0.6.1-alpha"
+    "elm": "0.19.0",
+    "elm-format": "0.8.1"
   },
   "scripts": {
-    "start": "elm-reactor",
+    "start": "elm reactor",
     "test": "echo \"No tests yet\"",
-    "build": "elm-make src/Main.elm --output=build/main.html --yes --warn",
-    "elm-install": "elm-package install --yes"
+    "build": "elm make src/Main.elm --output=build/main.html --optimize"
   },
   "author": "",
   "license": "MIT"
